@@ -30,8 +30,7 @@ const webhookWorker = new Worker(QUEUE_NAMES.WEBHOOK, async (job) => {
     const responseBody = error.response ? JSON.stringify(error.response.data) : error.message;
 
     // Log Failure
-    await webhookService.updateLogStatus(webhookId, 'pending', responseCode, responseBody); // Pending until retry logic decides? 
-    // Actually updateLogStatus just logs the attempt. We need to decide if we fail permanently or retry.
+    await webhookService.updateLogStatus(webhookId, 'pending', responseCode, responseBody);
 
     if (attemptNumber < 5) {
       // Schedule Retry
