@@ -33,8 +33,7 @@ payment-gatewayy/
 │   │   └── App.jsx
 │   ├── Dockerfile
 │   └── vite.config.js
-├── test-merchant/          # Simple App to Verify Webhooks
-│   └── index.js
+
 └── docker-compose.yml      # Orchestration
 ```
 
@@ -103,7 +102,6 @@ The entire system is containerized.
 2.  **Access Components**:
     - **Dashboard**: http://localhost:3000
     - **API**: http://localhost:8000
-    - **Test Merchant**: http://localhost:4000
 
 ## API Overview
 

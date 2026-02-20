@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   postgres:
@@ -99,14 +99,6 @@ services:
     volumes:
       - ./checkout-widget:/app
       - /app/node_modules
-  
-  test-merchant:
-    build:
-      context: ./test-merchant
-      dockerfile: Dockerfile
-    container_name: gateway_test_merchant
-    ports:
-      - "4000:4000"
 
 volumes:
   postgres_data:

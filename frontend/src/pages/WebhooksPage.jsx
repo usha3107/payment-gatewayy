@@ -48,8 +48,7 @@ const WebhooksPage = () => {
           <input 
             data-test-id="webhook-url-input"
             type="url"
-            placeholder="https://yoursite.com/webhook"
-            defaultValue="http://host.docker.internal:4000/webhook"
+            placeholder="https://yoursite.com/webhook" 
             style={{ width: '300px', padding: '5px' }}
           />
         </div>
