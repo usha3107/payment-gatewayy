@@ -18,15 +18,9 @@ const createPayment = async (req, res) => {
     const payment = await paymentService.createPayment(req.body, req.merchant);
     
     // Enqueue 'payment.created' Webhook
-    const enqueueWebhook = require('../utils/enqueueWebhook');
-    // Payload wrapper as per requirement: { event, timestamp, data: { payment: ... } }
-    const webhookPayload = {
-        event: 'payment.created',
-        timestamp: Math.floor(Date.now() / 1000),
-        data: { payment }
-    };
-    // Fire and forget
-    enqueueWebhook(req.merchant, 'payment.created', webhookPayload);
+    const webhookService = require('../services/webhookService');
+    const webhookData = { payment };
+    webhookService.enqueueWebhook(req.merchant, 'payment.created', webhookData);
 
     // Return Pending Payment
     res.status(201).json(payment);
