@@ -30,13 +30,9 @@ const createRefund = async (req, res) => {
         const refund = await refundService.createRefund({ amount, reason }, req.merchant, payment);
         
         // Enqueue 'refund.created' Webhook
-        const enqueueWebhook = require('../utils/enqueueWebhook');
-        const webhookPayload = {
-            event: 'refund.created',
-            timestamp: Math.floor(Date.now() / 1000),
-            data: { refund }
-        };
-        enqueueWebhook(req.merchant, 'refund.created', webhookPayload);
+        const webhookService = require('../services/webhookService');
+        const webhookData = { refund };
+        webhookService.enqueueWebhook(req.merchant, 'refund.created', webhookData);
 
         res.status(201).json(refund);
     } catch (e) {
